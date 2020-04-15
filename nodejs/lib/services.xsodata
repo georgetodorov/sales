@@ -1,0 +1,5 @@
+services  {
+   "sales.db::tables.Region" as "Region" navigates ("Countries" as "Countries");
+   "sales.db::tables.Country" as "Country";
+   association "Countries" principal "Region"("name") multiplicity "1" dependent "Country"("partOf.name") multiplicity "*";
+}

@@ -1,0 +1,4 @@
+namespace sales.db1;
+
+context tables1 {
+};

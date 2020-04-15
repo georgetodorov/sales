@@ -1,0 +1,15 @@
+namespace sales.db;
+
+/*@@layout{"layoutInfo":{"x":-337,"y":-62}}*/
+context tables {
+    entity Region {
+        key name   : String(100);
+            amount : BinaryFloat;
+    };
+
+    entity Country {
+        key name   : String(100);
+            amount : BinaryFloat;
+            partOf : association[0..1] to Region;
+    };
+};

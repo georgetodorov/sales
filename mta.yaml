@@ -1,0 +1,50 @@
+ID: sales
+_schema-version: '2.1'
+version: 0.0.2
+modules:
+  - name: db
+    type: hdb
+    path: db
+    requires:
+      - name: hdi_db
+      - name: hdi_db1
+  - name: nodejs
+    type: nodejs
+    path: nodejs
+    provides:
+      - name: nodejs_api
+        properties:
+          url: '${default-url}'
+    requires:
+      - name: hdi_db
+  - name: db1
+    type: hdb
+    path: db1
+    requires:
+      - name: hdi_db1
+        properties: {}
+resources:
+  - name: hdi_db
+    properties:
+      hdi-container-name: '${service-name}'
+    type: com.sap.xs.hdi-container
+  - name: uaa_sales
+    parameters:
+      path: ./xs-security.json
+      service-plan: application
+      service: xsuaa
+    type: org.cloudfoundry.managed-service
+  - name: dest_sales
+    parameters:
+      service-plan: lite
+      service: destination
+    type: org.cloudfoundry.managed-service
+  - name: hdi_db1
+    properties:
+      hdi-container-name_2: '${service-name}'
+    type: com.sap.xs.hdi-container
+  - name: portal_resources_sales
+    parameters:
+      service-plan: standard
+      service: portal
+    type: org.cloudfoundry.managed-service
