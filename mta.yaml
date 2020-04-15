@@ -1,6 +1,6 @@
 ID: sales
 _schema-version: '2.1'
-version: 0.0.5
+version: 0.0.6
 modules:
   - name: db
     type: hdb
